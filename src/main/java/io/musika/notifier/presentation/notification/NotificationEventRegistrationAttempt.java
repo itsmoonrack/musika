@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.net.URI;
 import java.util.Date;
 
-import io.musika.notifier.domain.model.ReleaseNumber;
-import io.musika.notifier.domain.model.TrackId;
+import io.musika.notifier.domain.model.release.ReleaseNumber;
+import io.musika.notifier.domain.model.track.TrackId;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 
 /**

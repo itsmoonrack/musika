@@ -3,10 +3,8 @@ package io.musika.notifier.domain.model.release;
 import java.net.URI;
 import java.util.Date;
 
-import io.musika.notifier.domain.model.Release;
-import io.musika.notifier.domain.model.ReleaseNumber;
-import io.musika.notifier.domain.model.Track;
-import io.musika.notifier.domain.model.TrackId;
+import io.musika.notifier.domain.model.track.Track;
+import io.musika.notifier.domain.model.track.TrackId;
 import io.musika.notifier.domain.model.store.Store;
 import io.musika.notifier.domain.model.store.StoreRepository;
 import io.musika.notifier.domain.model.track.TrackRepository;

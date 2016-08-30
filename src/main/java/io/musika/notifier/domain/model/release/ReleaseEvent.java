@@ -2,8 +2,7 @@ package io.musika.notifier.domain.model.release;
 
 import java.util.Date;
 
-import io.musika.notifier.domain.model.Release;
-import io.musika.notifier.domain.model.Track;
+import io.musika.notifier.domain.model.track.Track;
 import io.musika.notifier.domain.model.store.Store;
 
 /**

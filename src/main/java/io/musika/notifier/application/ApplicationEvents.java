@@ -1,6 +1,6 @@
 package io.musika.notifier.application;
 
-import io.musika.notifier.domain.model.Track;
+import io.musika.notifier.domain.model.track.Track;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 import io.musika.notifier.presentation.notification.NotificationEventRegistrationAttempt;
 
