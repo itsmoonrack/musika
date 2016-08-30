@@ -1,4 +1,4 @@
-package io.musika.notifier.domain.model;
+package io.musika.notifier.domain.model.track;
 
 /**
  * (c) Swissquote 30.08.16
