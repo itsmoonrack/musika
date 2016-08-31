@@ -1,7 +1,16 @@
 package io.musika.notifier.domain.model.release;
 
+import static org.apache.commons.lang3.Validate.notNull;
+
 import java.util.Date;
 
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import io.musika.notifier.domain.model.shared.DomainEvent;
+import io.musika.notifier.domain.model.shared.ValueObject;
 import io.musika.notifier.domain.model.track.Track;
 import io.musika.notifier.domain.model.store.Store;
 
@@ -20,7 +29,7 @@ import io.musika.notifier.domain.model.store.Store;
  *
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
  */
-public final class ReleaseEvent {
+public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
 
 	private Type type;
 	private Store store;
@@ -31,7 +40,7 @@ public final class ReleaseEvent {
 	/**
 	 * Release event type.
 	 */
-	public enum Type {
+	public enum Type implements ValueObject<Type> {
 		RELEASED(true),
 		REMOVED(true),
 		SUBSCRIBED(false);
@@ -51,6 +60,11 @@ public final class ReleaseEvent {
 			return releaseRequired;
 		}
 
+		@Override
+		public boolean sameValueAs(final Type other) {
+			return other != null && this.equals(other);
+		}
+
 	}
 
 	/**
@@ -63,7 +77,20 @@ public final class ReleaseEvent {
 					    final Date eventTime,
 						final Type type,
 						final Store store) {
-		this(track, eventTime, type, store, null);
+		notNull(track, "Track is required");
+		notNull(eventTime, "Event time is required");
+		notNull(type, "Release event type is required");
+		notNull(store, "Store is required");
+
+		if (type.requiresRelease()) {
+			throw new IllegalArgumentException("Release is required for event type " + type);
+		}
+
+		this.eventTime = eventTime;
+		this.type = type;
+		this.store = store;
+		this.track = track;
+		this.release = null;
 	}
 
 	/**
@@ -78,10 +105,11 @@ public final class ReleaseEvent {
 						final Type type,
 						final Store store,
 						final Release release) {
-
-		if (type.requiresRelease()) {
-			throw new IllegalArgumentException("Release is required for event type " + type);
-		}
+		notNull(track, "Track is required");
+		notNull(eventTime, "Event time is required");
+		notNull(type, "Release event type is required");
+		notNull(store, "Store is required");
+		notNull(release, "Release is required");
 
 		this.release = release;
 		this.eventTime = eventTime;
@@ -89,5 +117,41 @@ public final class ReleaseEvent {
 		this.store = store;
 		this.track = track;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		return sameEventAs((ReleaseEvent) o);
+	}
+
+	@Override
+	public boolean sameEventAs(final ReleaseEvent other) {
+		return other != null && new EqualsBuilder()
+				.append(this.track, other.track)
+				.append(this.release, other.release)
+				.append(this.eventTime, other.eventTime)
+				.append(this.store, other.store)
+				.append(this.type, other.type)
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.append(track)
+				.append(release)
+				.append(eventTime)
+				.append(store)
+				.append(type)
+				.hashCode();
+	}
+
+	ReleaseEvent() {
+		// Needed by Hibernate
+	}
+
+	// Auto-generated surrogate key
+	private Long id;
 
 }

@@ -1,6 +1,6 @@
 package io.musika.notifier.domain.model.release;
 
-import static io.musika.notifier.domain.model.shared.Validate.notNull;
+import static org.apache.commons.lang3.Validate.notNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class ReleaseHistory {
 
-	public static final ReleaseHistory EMPTY = new ReleaseHistory(Collections.<ReleaseEvent>emptyList());
+	public static final ReleaseHistory EMPTY = new ReleaseHistory(Collections.emptyList());
 
 	private final List<ReleaseEvent> releaseEvents;
 

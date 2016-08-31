@@ -3,6 +3,8 @@ package io.musika.notifier.domain.model.store;
 import java.net.URI;
 import java.util.List;
 
+import io.musika.notifier.domain.model.release.UnknownStoreException;
+
 public interface StoreRepository {
 
 	/**

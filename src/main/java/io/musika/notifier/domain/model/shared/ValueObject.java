@@ -1,7 +1,7 @@
 package io.musika.notifier.domain.model.shared;
 
 /**
- * A value object.
+ * A value object, as explained in the Domain Driven Design book.
  */
 public interface ValueObject<T> {
 

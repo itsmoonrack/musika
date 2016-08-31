@@ -18,7 +18,7 @@ public interface ApplicationEvents {
 	 *
 	 * @param event notification event
 	 */
-	void trackHasNotification(ReleaseEvent event);
+	void trackWasNotified(ReleaseEvent event);
 
 	/**
 	 * A track has been removed.
@@ -32,7 +32,7 @@ public interface ApplicationEvents {
 	 *
 	 * @param track track
 	 */
-	void trackWasReleased(Track track);
+	void trackHasReleased(Track track);
 
 	/**
 	 * A notification event registration attempt is received.

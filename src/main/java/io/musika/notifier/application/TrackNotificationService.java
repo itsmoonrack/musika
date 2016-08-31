@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
  */
-public interface NotificationService {
+public interface TrackNotificationService {
 
     /**
      * Registers a new track in the notification system, not yet subscribed.
