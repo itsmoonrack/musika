@@ -1,8 +1,5 @@
 package io.musika.notifier.domain.model.track;
 
-import io.musika.notifier.domain.model.Track;
-import io.musika.notifier.domain.model.TrackId;
-
 public interface TrackRepository {
 
 	/**

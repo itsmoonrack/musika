@@ -1,6 +1,6 @@
 package io.musika.notifier.application;
 
-import io.musika.notifier.domain.model.TrackId;
+import io.musika.notifier.domain.model.track.TrackId;
 
 /**
  * Store status service.
