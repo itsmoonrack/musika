@@ -12,9 +12,9 @@ import io.musika.notifier.application.ReleaseEventService;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 import io.musika.notifier.domain.model.release.ReleaseEventFactory;
 import io.musika.notifier.domain.model.release.ReleaseEventRepository;
-import io.musika.notifier.domain.model.release.ReleaseNumber;
+import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
 import io.musika.notifier.domain.model.release.UnableToCreateReleaseEventException;
-import io.musika.notifier.domain.model.track.TrackId;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
 
 public final class ReleaseEventServiceImpl implements ReleaseEventService {
 
@@ -48,8 +48,8 @@ public final class ReleaseEventServiceImpl implements ReleaseEventService {
 		// that happens asynchronously!).
 		releaseEventRepository.save(event);
 
-		// Publishes an event stating that a track has been notified.
-		applicationEvents.trackWasNotified(event);
+		// Publishes an event stating that a track has been released.
+		applicationEvents.trackWasReleased(event);
 
 		logger.info("Registered release event");
     }

@@ -1,8 +1,8 @@
 package io.musika.notifier.application;
 
-import io.musika.notifier.domain.model.track.Track;
+import io.musika.notifier.domain.model.notifier.Track;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
-import io.musika.notifier.presentation.notification.NotificationEventRegistrationAttempt;
+import io.musika.notifier.presentation.notification.ReleaseEventRegistrationAttempt;
 
 /**
  * This interface provides a way to let other parts of the system know about events that have occurred.
@@ -14,11 +14,11 @@ import io.musika.notifier.presentation.notification.NotificationEventRegistratio
 public interface ApplicationEvents {
 
 	/**
-	 * A track has a notification.
+	 * A track has been released.
 	 *
-	 * @param event notification event
+	 * @param event release event
 	 */
-	void trackWasNotified(ReleaseEvent event);
+	void trackWasReleased(ReleaseEvent event);
 
 	/**
 	 * A track has been removed.
@@ -32,13 +32,13 @@ public interface ApplicationEvents {
 	 *
 	 * @param track track
 	 */
-	void trackHasReleased(Track track);
+	void trackWasAvailable(Track track);
 
 	/**
 	 * A notification event registration attempt is received.
 	 *
 	 * @param attempt
 	 */
-	void receivedNotificationEventRegistrationAttempt(NotificationEventRegistrationAttempt attempt);
+	void receivedReleaseEventRegistrationAttempt(ReleaseEventRegistrationAttempt attempt);
 
 }

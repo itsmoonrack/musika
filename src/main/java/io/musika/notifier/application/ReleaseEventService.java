@@ -3,9 +3,9 @@ package io.musika.notifier.application;
 import java.net.URI;
 import java.util.Date;
 
-import io.musika.notifier.domain.model.release.ReleaseNumber;
+import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
 import io.musika.notifier.domain.model.release.UnableToCreateReleaseEventException;
-import io.musika.notifier.domain.model.track.TrackId;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 
 /**

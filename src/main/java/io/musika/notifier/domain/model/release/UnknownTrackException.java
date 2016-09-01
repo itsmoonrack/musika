@@ -1,6 +1,6 @@
 package io.musika.notifier.domain.model.release;
 
-import io.musika.notifier.domain.model.track.TrackId;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
 
 /**
  * Thrown when trying to register an event with an unknown track id.

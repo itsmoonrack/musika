@@ -1,13 +1,13 @@
 package io.musika.notifier.application;
 
-import io.musika.notifier.domain.model.track.TrackId;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
 
 /**
  * Store status service.
  *
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
  */
-public interface StoreStatusService {
+public interface StoreInquiryService {
 
 	/**
 	 * Query store and send relevant notifications to interested parties,
