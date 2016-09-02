@@ -6,7 +6,7 @@ import java.util.Date;
 import io.musika.notifier.domain.model.shared.kernel.Release;
 import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
 import io.musika.notifier.domain.model.shared.kernel.ReleaseRepository;
-import io.musika.notifier.domain.model.notifier.Track;
+import io.musika.notifier.domain.model.shared.kernel.Track;
 import io.musika.notifier.domain.model.shared.kernel.TrackId;
 import io.musika.notifier.domain.model.store.Store;
 import io.musika.notifier.domain.model.store.StoreRepository;

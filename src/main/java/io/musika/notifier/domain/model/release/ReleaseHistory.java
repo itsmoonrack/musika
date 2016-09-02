@@ -21,7 +21,7 @@ public class ReleaseHistory implements ValueObject<ReleaseHistory> {
     private final List<ReleaseEvent> releaseEvents;
 
     public ReleaseHistory(Collection<ReleaseEvent> releaseEvents) {
-        notNull(releaseEvents, "Release events are required");
+        notNull(releaseEvents, "Release events are null");
 
         this.releaseEvents = new ArrayList<>(releaseEvents);
     }
@@ -40,7 +40,10 @@ public class ReleaseHistory implements ValueObject<ReleaseHistory> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        return sameValueAs((ReleaseHistory) o);
+
+        final ReleaseHistory other = (ReleaseHistory) o;
+
+        return sameValueAs(other);
     }
 
     @Override

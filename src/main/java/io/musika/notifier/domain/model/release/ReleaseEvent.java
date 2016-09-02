@@ -76,10 +76,10 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
                         final Date eventTime,
                         final Type type,
                         final Store store) {
-        notNull(track, "Track is required");
-        notNull(eventTime, "Event time is required");
-        notNull(type, "Release event type is required");
-        notNull(store, "Store is required");
+        notNull(track, "Track is null");
+        notNull(eventTime, "Event time is null");
+        notNull(type, "Release event type is null");
+        notNull(store, "Store is null");
 
         if (type.requiresRelease()) {
             throw new IllegalArgumentException("Release is required for event type " + type);
@@ -104,11 +104,11 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
                         final Type type,
                         final Store store,
                         final Release release) {
-        notNull(track, "Track is required");
-        notNull(eventTime, "Event time is required");
-        notNull(type, "Release event type is required");
-        notNull(store, "Store is required");
-        notNull(release, "Release is required");
+        notNull(track, "Track is null");
+        notNull(eventTime, "Event time is null");
+        notNull(type, "Release event type is null");
+        notNull(store, "Store is null");
+        notNull(release, "Release is null");
 
         this.release = release;
         this.eventTime = eventTime;
