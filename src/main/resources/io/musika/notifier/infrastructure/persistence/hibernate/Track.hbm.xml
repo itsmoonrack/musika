@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="io.musika.notifier.domain.model.shared.kernel.Track" table="Track" mutable="false">
+
+        <id name="id" column="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+        </id>
+
+        <component name="trackId" unique="true" update="false">
+            <property name="id" column="track_id"/>
+        </component>
+
+        <set name="artists" lazy="true">
+            <key column="track_id" not-null="true" foreign-key="artists_fk"/>
+            <many-to-many entity-name="io.musika.notifier.domain.model.shared.kernel.Artist">
+                <column name="artist_id" not-null="true"/>
+            </many-to-many>
+        </set>
+
+        <property name="title" column="title" not-null="true"/>
+
+        <set name="remixers" lazy="true">
+            <key column="track_id" not-null="true" foreign-key="remixers_fk"/>
+            <many-to-many entity-name="io.musika.notifier.domain.model.shared.kernel.Artist">
+                <column name="remixer_id" not-null="true"/>
+            </many-to-many>
+        </set>
+
+        <property name="year" column="year" not-null="true"/>
+
+    </class>
+</hibernate-mapping>

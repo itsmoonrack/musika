@@ -9,10 +9,11 @@ import java.util.Set;
  * A track.
  */
 public class Track implements Entity<Track, TrackId> {
-
+// TODO: Make this a ValueObject since its immutable
 	private TrackId trackId;
 	private Set<Artist> artists;
 	private String title;
+    private Set<Artist> remixers;
 	private Year year;
 
 	@Override
@@ -24,5 +25,12 @@ public class Track implements Entity<Track, TrackId> {
 	public TrackId identity() {
 		return trackId;
 	}
+
+	protected Track() {
+		// Needed by Hibernate
+	}
+
+    // Auto-generated surrogate key
+	private Long id;
 
 }

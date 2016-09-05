@@ -42,4 +42,8 @@ public final class TrackId implements ValueObject<TrackId>, Serializable {
 	}
 
 
+	protected TrackId() {
+		// Needed by Hibernate
+	}
+
 }
