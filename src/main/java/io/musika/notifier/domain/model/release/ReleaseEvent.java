@@ -1,17 +1,17 @@
 package io.musika.notifier.domain.model.release;
 
-import static org.apache.commons.lang3.Validate.notNull;
-
-import java.util.Date;
-
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import io.musika.notifier.domain.model.shared.DomainEvent;
 import io.musika.notifier.domain.model.shared.ValueObject;
 import io.musika.notifier.domain.model.shared.kernel.Release;
 import io.musika.notifier.domain.model.shared.kernel.Track;
 import io.musika.notifier.domain.model.store.Store;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.Date;
+
+import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * A ReleaseEvent is used to register the event when, for instance, a release is available from a store at a given time.
@@ -119,6 +119,10 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
 
     public Type type() {
         return this.type;
+    }
+
+    public Release release() {
+        return defaultIfNull(this.release, Release.NONE);
     }
 
     public Store store() {

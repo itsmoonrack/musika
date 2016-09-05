@@ -1,12 +1,12 @@
 package io.musika.notifier.domain.model.notifier;
 
-import static org.apache.commons.lang3.Validate.noNullElements;
-import static org.apache.commons.lang3.Validate.notNull;
+import io.musika.notifier.domain.model.shared.ValueObject;
 
 import java.util.Collections;
 import java.util.List;
 
-import io.musika.notifier.domain.model.shared.ValueObject;
+import static org.apache.commons.lang3.Validate.noNullElements;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * The subscriber list.

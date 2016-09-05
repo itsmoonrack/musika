@@ -1,10 +1,12 @@
 package io.musika.notifier.domain.model.shared.kernel;
 
+import io.musika.notifier.domain.model.shared.Entity;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import io.musika.notifier.domain.model.shared.Entity;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
@@ -15,6 +17,20 @@ public class Release implements Entity<Release, ReleaseNumber> {
 	private Label recordLabel;
 	private ReleaseNumber releaseNumber;
 	private List<Track> tracks = Collections.emptyList();
+
+	// Null object pattern TODO see Optional ?
+    public static final Release NONE = new Release(
+            new ReleaseNumber(""), Label.NONE, new Date()
+    );
+
+    public Release(final ReleaseNumber releaseNumber, final Label recordLabel, final Date releaseDate) {
+        notNull(releaseNumber, "Release number is null");
+        notNull(recordLabel, "Label is null");
+
+        this.releaseDate = releaseDate;
+        this.releaseNumber = releaseNumber;
+        this.recordLabel = recordLabel;
+    }
 
 	/**
 	 * @return the tracks of this release, as an <b>immutable</b> list.

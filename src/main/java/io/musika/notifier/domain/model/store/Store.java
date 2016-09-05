@@ -1,8 +1,8 @@
 package io.musika.notifier.domain.model.store;
 
-import java.net.URI;
-
 import io.musika.notifier.domain.model.shared.Entity;
+
+import java.net.URI;
 
 /**
  * A store is our model representing an entity who can sell releases of a track, either digitally or physically.

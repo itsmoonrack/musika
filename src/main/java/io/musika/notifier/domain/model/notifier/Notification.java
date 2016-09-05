@@ -1,25 +1,20 @@
 package io.musika.notifier.domain.model.notifier;
 
-import static io.musika.notifier.domain.model.notifier.SendingStatus.MISSENT;
-import static io.musika.notifier.domain.model.notifier.SendingStatus.NOT_SENT;
-import static io.musika.notifier.domain.model.notifier.SendingStatus.SENT;
-import static io.musika.notifier.domain.model.notifier.Availability.AVAILABLE;
-import static io.musika.notifier.domain.model.notifier.Availability.NOT_AVAILABLE;
-import static io.musika.notifier.domain.model.notifier.Availability.UNKNOWN;
-import static org.apache.commons.lang3.Validate.notNull;
-
-import java.util.Date;
-
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 import io.musika.notifier.domain.model.release.ReleaseHistory;
 import io.musika.notifier.domain.model.shared.ValueObject;
-import io.musika.notifier.domain.model.shared.kernel.Release;
 import io.musika.notifier.domain.model.shared.kernel.Track;
 import io.musika.notifier.domain.model.store.Store;
 
+import java.util.Date;
+
+import static io.musika.notifier.domain.model.notifier.Availability.*;
+import static io.musika.notifier.domain.model.notifier.SendingStatus.*;
+import static org.apache.commons.lang3.Validate.notNull;
+
 /**
  * The actual notification of the subscription, as opposed to
- * the user requirement (SendSpecification) and the release (Release).
+ * the user requirement (TrackSpecification) and the release (Release).
  */
 public class Notification implements ValueObject<Notification> {
 
@@ -36,47 +31,52 @@ public class Notification implements ValueObject<Notification> {
 	 * when the track specification or the release has changed but no
 	 * additional release event of the track has been performed.
 	 *
-	 * @param sendSpecification track specification
-	 * @param release release
+	 * @param trackSpecification track specification
+	 * @param catalog catalog
 	 * @return An up to date notification
 	 */
-	Notification updateOnRelease(final SendSpecification sendSpecification, final Release release) {
-		notNull(sendSpecification, "Track specification is null");
+	Notification updateOnSending(final TrackSpecification trackSpecification,
+                                 final Catalog catalog) {
+		notNull(trackSpecification, "Track specification is null");
 
-		return new Notification(this.lastEvent, release, sendSpecification);
+		return new Notification(this.lastEvent, catalog, trackSpecification);
 	}
 
 	/**
 	 * Creates a new notification based on the complete release history of a subscription,
 	 * as well as its track specification and itinerary.
 	 *
-	 * @param sendSpecification track specification
-	 * @param release release
+	 * @param trackSpecification track specification
+	 * @param catalog catalog
 	 * @param releaseHistory release history
 	 * @return An up to date notification
 	 */
-	static Notification derivedFrom(final SendSpecification sendSpecification, final Release release, final ReleaseHistory releaseHistory) {
-		notNull(sendSpecification, "Track specification is null");
+	static Notification derivedFrom(final TrackSpecification trackSpecification,
+									final Catalog catalog,
+									final ReleaseHistory releaseHistory) {
+		notNull(trackSpecification, "Track specification is null");
 		notNull(releaseHistory, "Release history is null");
 
 		final ReleaseEvent lastEvent = releaseHistory.mostRecentlyReleasedEvent();
 
-		return new Notification(lastEvent, release, sendSpecification);
+		return new Notification(lastEvent, catalog, trackSpecification);
 	}
 
 	/**
 	 * Internal constructor.
 	 *
 	 * @param lastEvent last event
-	 * @param release release
-	 * @param sendSpecification track specification
+	 * @param catalog release
+	 * @param trackSpecification track specification
 	 */
-	private Notification(final ReleaseEvent lastEvent, final Release release, final SendSpecification sendSpecification) {
+	private Notification(final ReleaseEvent lastEvent,
+                         final Catalog catalog,
+                         final TrackSpecification trackSpecification) {
 		this.calculatedAt = new Date();
 		this.lastEvent = lastEvent;
 
-		this.missent = calculateMissentStatus(release);
-		this.sendingStatus = calculateSendingStatus(release, sendSpecification);
+		this.missent = calculateMissentStatus(catalog);
+		this.sendingStatus = calculateSendingStatus(catalog, trackSpecification);
 		this.availability = calculateVacantStatus();
 		this.lastKnownStore = calculateLastKnownStore();
 		this.currentTrack = calculateCurrentTrack();
@@ -114,19 +114,19 @@ public class Notification implements ValueObject<Notification> {
 		}
 	}
 
-	private boolean calculateMissentStatus(Release release) {
+	private boolean calculateMissentStatus(final Catalog catalog) {
 		if (lastEvent == null) {
 			return false;
 		} else {
-			return !release.isExpected(lastEvent);
+			return !catalog.isExpected(lastEvent);
 		}
 	}
 
-	private SendingStatus calculateSendingStatus(final Release release, final SendSpecification sendSpecification) {
-		if (release == null) {
+	private SendingStatus calculateSendingStatus(final Catalog catalog, final TrackSpecification trackSpecification) {
+		if (catalog == null) {
 			return NOT_SENT;
 		} else {
-			if (sendSpecification.isSatisfiedBy(release)) {
+			if (trackSpecification.isSatisfiedBy(catalog)) {
 				return SENT;
 			} else {
 				return MISSENT;

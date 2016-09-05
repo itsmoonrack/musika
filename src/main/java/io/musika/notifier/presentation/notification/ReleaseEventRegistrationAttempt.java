@@ -1,12 +1,12 @@
 package io.musika.notifier.presentation.notification;
 
+import io.musika.notifier.domain.model.release.ReleaseEvent;
+import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
+
 import java.io.Serializable;
 import java.net.URI;
 import java.util.Date;
-
-import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
-import io.musika.notifier.domain.model.shared.kernel.TrackId;
-import io.musika.notifier.domain.model.release.ReleaseEvent;
 
 /**
  * Simple transfer object for passing incoming notification event registration attempts

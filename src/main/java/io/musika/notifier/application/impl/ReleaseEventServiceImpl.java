@@ -1,20 +1,19 @@
 package io.musika.notifier.application.impl;
 
-import java.net.URI;
-import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
-
 import io.musika.notifier.application.ApplicationEvents;
 import io.musika.notifier.application.ReleaseEventService;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 import io.musika.notifier.domain.model.release.ReleaseEventFactory;
 import io.musika.notifier.domain.model.release.ReleaseEventRepository;
-import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
 import io.musika.notifier.domain.model.release.UnableToCreateReleaseEventException;
+import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
 import io.musika.notifier.domain.model.shared.kernel.TrackId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.net.URI;
+import java.util.Date;
 
 public final class ReleaseEventServiceImpl implements ReleaseEventService {
 
@@ -31,6 +30,7 @@ public final class ReleaseEventServiceImpl implements ReleaseEventService {
 		this.releaseEventFactory = releaseEventFactory;
 	}
 
+	@Override
 	@Transactional(rollbackFor = UnableToCreateReleaseEventException.class)
     public void registerReleaseEvent(final Date eventTime,
 									 final TrackId trackId,
@@ -42,9 +42,8 @@ public final class ReleaseEventServiceImpl implements ReleaseEventService {
 		// capable of representing a real release event.
 		final ReleaseEvent event = releaseEventFactory.createReleaseEvent(eventTime, trackId, releaseNumber, uriCode, type);
 
-		// TODO: Check this comment
 		// Stores the new release event, which updates the persistent state
-		// of the release event aggregate (but not the track aggregate,
+		// of the release event aggregate (but not the subscription aggregate,
 		// that happens asynchronously!).
 		releaseEventRepository.save(event);
 

@@ -1,7 +1,10 @@
 package io.musika.notifier.application;
 
+import io.musika.notifier.domain.model.shared.kernel.Artist;
 import io.musika.notifier.domain.model.shared.kernel.TrackId;
 import io.musika.notifier.domain.model.shared.kernel.UserId;
+
+import java.util.Set;
 
 /**
  * Tracking notification service.
@@ -16,7 +19,7 @@ public interface TrackingService {
      * @param name	track name
      * @return Track id
      */
-    TrackId createNewTrack(String name);
+    TrackId createNewTrack(Set<Artist> artist, String title, Set<Artist> remixer);
 
     /**
      * Requests the number of subscribers for a track id.

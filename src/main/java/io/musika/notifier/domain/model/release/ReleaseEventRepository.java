@@ -1,8 +1,7 @@
 package io.musika.notifier.domain.model.release;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import io.musika.notifier.domain.model.shared.kernel.TrackId;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Release event repository.

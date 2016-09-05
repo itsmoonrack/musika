@@ -1,10 +1,10 @@
 package io.musika.notifier.domain.model.shared.kernel;
 
-import static org.apache.commons.lang3.Validate.notNull;
+import io.musika.notifier.domain.model.shared.ValueObject;
 
 import java.io.Serializable;
 
-import io.musika.notifier.domain.model.shared.ValueObject;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * Identifies a release.

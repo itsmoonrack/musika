@@ -7,14 +7,14 @@ import io.musika.notifier.domain.model.shared.kernel.TrackId;
  *
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
  */
-public interface StoreInquiryService {
+public interface SubscriptionInquiryService {
 
 	/**
-	 * Query store and send relevant notifications to interested parties,
+	 * Query subscription and send relevant notifications to interested parties,
 	 * for example if a track has been released, or removed from a particular store.
 	 *
 	 * @param trackId track id
 	 */
-	void queryStore(TrackId trackId);
+	void querySubscription(TrackId trackId);
 
 }

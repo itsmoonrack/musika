@@ -1,13 +1,12 @@
 package io.musika.notifier.domain.model.notifier;
 
-import static org.apache.commons.lang3.Validate.notNull;
-
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 import io.musika.notifier.domain.model.shared.ValueObject;
 import io.musika.notifier.domain.model.shared.kernel.Release;
 import io.musika.notifier.domain.model.store.Store;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * A catalog consists of one or more (physical) record.

@@ -1,13 +1,13 @@
 package io.musika.notifier.domain.model.release;
 
-import static org.apache.commons.lang3.Validate.notNull;
+import io.musika.notifier.domain.model.shared.ValueObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import io.musika.notifier.domain.model.shared.ValueObject;
+import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * The release history of a track.

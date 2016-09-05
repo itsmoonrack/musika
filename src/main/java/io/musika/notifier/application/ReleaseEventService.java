@@ -1,12 +1,12 @@
 package io.musika.notifier.application;
 
+import io.musika.notifier.domain.model.release.ReleaseEvent;
+import io.musika.notifier.domain.model.release.UnableToCreateReleaseEventException;
+import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
+
 import java.net.URI;
 import java.util.Date;
-
-import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;
-import io.musika.notifier.domain.model.release.UnableToCreateReleaseEventException;
-import io.musika.notifier.domain.model.shared.kernel.TrackId;
-import io.musika.notifier.domain.model.release.ReleaseEvent;
 
 /**
  * Release event service.

@@ -1,6 +1,6 @@
 package io.musika.notifier.application;
 
-import io.musika.notifier.domain.model.notifier.Track;
+import io.musika.notifier.domain.model.notifier.Subscription;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 import io.musika.notifier.presentation.notification.ReleaseEventRegistrationAttempt;
 
@@ -21,18 +21,18 @@ public interface ApplicationEvents {
 	void trackWasReleased(ReleaseEvent event);
 
 	/**
-	 * A track has been removed.
+	 * A subscription has been removed.
 	 *
-	 * @param track track
+	 * @param subscription subscription
 	 */
-	void trackWasRemoved(Track track);
+	void subscriptionWasRemoved(Subscription subscription);
 
 	/**
-	 * A track has been released.
+	 * A subscription has been released.
 	 *
-	 * @param track track
+	 * @param subscription subscription
 	 */
-	void trackWasAvailable(Track track);
+	void subscriptionWasCreated(Subscription subscription);
 
 	/**
 	 * A notification event registration attempt is received.
