@@ -3,14 +3,15 @@ package io.musika.notifier.domain.model.notifier;
 import io.musika.notifier.domain.model.release.ReleaseHistory;
 import io.musika.notifier.domain.model.shared.Entity;
 import io.musika.notifier.domain.model.shared.kernel.Release;
+import io.musika.notifier.domain.model.shared.kernel.TrackId;
 import io.musika.notifier.domain.model.shared.kernel.UserId;
 
 /**
- * A Track. This is the central class in the domain model, and it is
+ * A Subscription. This is the central class in the domain model, and it is
  * the root of the ...
  * TODO doc
  */
-public class Subscription implements Entity<Subscription, UserId> {
+public class Subscription implements Entity<Subscription, TrackId> {
 
 	private UserId userId;
 	private TrackSpecification trackSpecification;
@@ -32,8 +33,8 @@ public class Subscription implements Entity<Subscription, UserId> {
 	}
 
 	@Override
-	public UserId identity() {
-		return userId;
+	public TrackId identity() {
+		return null;
 	}
 
 }
