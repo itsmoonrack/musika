@@ -1,5 +1,7 @@
 package io.musika.notifier.domain.model.shared.kernel;
 
+import io.musika.notifier.domain.service.ArtistService;
+
 /**
  * Creates tracks.
  *
@@ -7,6 +9,12 @@ package io.musika.notifier.domain.model.shared.kernel;
  */
 public class TrackFactory {
 
-	private final ArtistRepository
+	private final ArtistService artistService;
+
+	public TrackFactory(final ArtistService artistService) {
+		this.artistService = artistService;
+	}
+
+
 
 }
