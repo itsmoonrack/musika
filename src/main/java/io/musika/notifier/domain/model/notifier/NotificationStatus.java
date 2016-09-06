@@ -5,11 +5,11 @@ import io.musika.notifier.domain.model.shared.ValueObject;
 /**
  * Sending status.
  */
-public enum SendingStatus implements ValueObject<SendingStatus> {
-	NOT_SENT, SENT, MISSENT;
+public enum NotificationStatus implements ValueObject<NotificationStatus> {
+	NOT_SENT, RELEASED, CHANGED;
 
 	@Override
-	public boolean sameValueAs(final SendingStatus other) {
+	public boolean sameValueAs(final NotificationStatus other) {
 		return this.equals(other);
 	}
 

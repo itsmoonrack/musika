@@ -60,7 +60,7 @@ public class Record implements ValueObject<Record> {
 				.toHashCode();
 	}
 
-	Record() {
+	protected Record() {
 		// Needed by Hibernate
 	}
 

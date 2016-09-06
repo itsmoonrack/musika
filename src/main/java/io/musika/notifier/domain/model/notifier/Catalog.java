@@ -49,7 +49,7 @@ public class Catalog implements ValueObject<Catalog> {
                 || event.type() == ReleaseEvent.Type.REMOVED) {
 			for (Record record : records) {
 				if (record.store().sameIdentityAs(event.store())
-						&& record.release().sameIdentityAs(event.release())) {
+						&& record.release().sameValueAs(event.release())) {
 				    return true;
 				}
 			}
@@ -72,7 +72,7 @@ public class Catalog implements ValueObject<Catalog> {
 		return other != null && records.equals(other.records);
 	}
 
-	Catalog() {
+	protected Catalog() {
 		// Needed by Hibernate
 	}
 

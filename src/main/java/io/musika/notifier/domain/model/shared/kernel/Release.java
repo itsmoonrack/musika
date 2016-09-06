@@ -1,17 +1,20 @@
 package io.musika.notifier.domain.model.shared.kernel;
 
-import io.musika.notifier.domain.model.shared.Entity;
+import static org.apache.commons.lang3.Validate.notNull;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import static org.apache.commons.lang3.Validate.notNull;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import io.musika.notifier.domain.model.shared.ValueObject;
 
 /**
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
  */
-public class Release implements Entity<Release, ReleaseNumber> {
+public class Release implements ValueObject<Release> {
 
 	private Date releaseDate;
 	private Label recordLabel;
@@ -46,22 +49,34 @@ public class Release implements Entity<Release, ReleaseNumber> {
 
 		final Release other = (Release) o;
 
-		return sameIdentityAs(other);
+		return sameValueAs(other);
 	}
 
 	@Override
-	public boolean sameIdentityAs(final Release other) {
-		return other != null && releaseNumber.equals(other.releaseNumber);
+	public boolean sameValueAs(final Release other) {
+		return other != null && new EqualsBuilder()
+				.append(this.recordLabel, other.recordLabel)
+				.append(this.releaseDate, other.releaseDate)
+				.append(this.releaseNumber, other.releaseNumber)
+				.append(this.tracks, other.tracks)
+				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return releaseNumber.hashCode();
+		return new HashCodeBuilder()
+				.append(recordLabel)
+				.append(releaseDate)
+				.append(releaseNumber)
+				.append(tracks)
+				.hashCode();
 	}
 
-	@Override
-	public ReleaseNumber identity() {
-		return releaseNumber;
+	protected Release() {
+		// Needed by Hibernate
 	}
+
+	// Auto-generated surrogate key
+	private Long id;
 
 }

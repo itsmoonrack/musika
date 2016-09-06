@@ -9,15 +9,37 @@ import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * A Subscription. This is the central class in the domain model, and it is
- * the root of the Subscription-Subscribers-Availability-Catalog aggregate.
- * TODO doc
+ * the root of the Subscription-Catalog-Record-Notification-TrackSpecification aggregate.
+ *
+ * A subscription is identified by a unique track id, and it always has a track specification.
+ * The life cycle of a subscription begins with the tracking procedure, when the track id is
+ * assigned. During a (short) period of time, between tracking and initial release of a record,
+ * the subscription has no catalog.
+ *
+ * TODO:
+ * The subscriber requests a list of possible track, matching the track specification,
+ * and assigns the subscription to one track
+ *
+ * When a track is released, the status of the notification changes. Everything about the
+ * notification of the subscription is contained in the Notification value object, which
+ * is replaced whenever a track is released by an asynchronous event triggered by the
+ * registration of the release event.
+ *
+ * The notification can also be affected by identification changes, i.e. when the track
+ * specification changes, or the subscription is attached to a new catalog. In that case,
+ * the notification update is performed synchronously within the subscription aggregate.
+ *
+ * The life cycle of a subscription ends when TODO
+ *
+ * The subscription aggregate, and the entire domain model, is built to solve the problem
+ * of tracking release. All important
  */
 public class Subscription implements Entity<Subscription, TrackId> {
 
 	private TrackId trackId;
-	private TrackSpecification trackSpecification;
 	private Catalog catalog;
     private Notification notification;
+	private TrackSpecification trackSpecification;
 
 	public Subscription(final TrackId trackId, final TrackSpecification trackSpecification) {
 		notNull(trackId, "Track ID is null");
@@ -48,16 +70,16 @@ public class Subscription implements Entity<Subscription, TrackId> {
     }
 
     /**
-     * Specifies a new alert for this subscription.
+     * Specifies a new track for this subscription.
      *
-     * @param trackSpecification send specification.
+     * @param trackSpecification track specification.
      */
-	public void specifyNewAlert(final TrackSpecification trackSpecification) {
+	public void specifyNewTrack(final TrackSpecification trackSpecification) {
 	    notNull(trackSpecification, "Send specification is null");
 
         this.trackSpecification = trackSpecification;
         // Handling consistency within the Subscription aggregate synchronously
-        this.notification = notification.updateOnSending(this.trackSpecification, this.catalog);
+        this.notification = notification.updateOnFetching(this.trackSpecification, this.catalog);
     }
 
     /**
@@ -65,12 +87,12 @@ public class Subscription implements Entity<Subscription, TrackId> {
      *
      * @param catalog a catalog. May not be null.
      */
-	public void assignToCatalog(final Catalog catalog) {
+	public void attachToCatalog(final Catalog catalog) {
 	    notNull(catalog, "Catalog is null");
 
 	    this.catalog = catalog;
         // Handling consistency within the Subscription aggregate synchronously
-        this.notification = notification.updateOnSending(this.trackSpecification, this.catalog);
+        this.notification = notification.updateOnFetching(this.trackSpecification, this.catalog);
     }
 
     /**
@@ -120,7 +142,7 @@ public class Subscription implements Entity<Subscription, TrackId> {
 	    return trackId.hashCode();
     }
 
-	Subscription() {
+	protected Subscription() {
 		// Needed by hibernate
 	}
 

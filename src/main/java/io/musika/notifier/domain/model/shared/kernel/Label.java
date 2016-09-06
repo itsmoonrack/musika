@@ -7,6 +7,8 @@ import io.musika.notifier.domain.model.shared.ValueObject;
  */
 public class Label implements ValueObject<Label> {
 
+    private String name;
+
     public static final Label NONE = new Label();
 
     @Override
@@ -14,8 +16,11 @@ public class Label implements ValueObject<Label> {
         return false;
     }
 
-    Label() {
+    protected Label() {
         // Needed by Hibernate
     }
+
+    // Auto-generated surrogate key
+    private Long id;
 
 }

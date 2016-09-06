@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="io.musika.notifier.domain.model.release.ReleaseEvent" table="ReleaseEvent">
+        <id name="id" column="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+        </id>
+        <many-to-one name="release" column="release_id" not-null="false" cascade="none" foreign-key="release_fk"/>
+        <many-to-one name="store" column="store_id" not-null="true" cascade="none" foreign-key="store_fk"/>
+        <many-to-one name="subscription" column="subscription_id" not-null="true" cascade="none" foreign-key="subscription_fk"/>
+        <property name="eventTime" column="event_time" not-null="true"/>
+        <property name="type" column="type" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">io.musika.notifier.domain.model.release.ReleaseEvent$Type</param>
+                <param name="type">12</param><!-- 12 is java.sql.Types.VARCHAR -->
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>

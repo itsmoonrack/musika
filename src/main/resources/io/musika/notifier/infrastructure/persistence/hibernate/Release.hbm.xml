@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="io.musika.notifier.domain.model.shared.kernel.Release" table="Release" mutable="false">
+
+        <id name="id" column="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+        </id>
+
+        <property name="releaseDate" column="release_date" not-null="true"/>
+
+        <many-to-one name="recordLabel" column="label_id" not-null="true" cascade="none" foreign-key="label_fk"/>
+
+        <component name="releaseNumber" update="false">
+            <property name="number" column="release_number" not-null="true"/>
+        </component>
+
+        <list name="tracks" lazy="true" cascade="all">
+            <key column="track_id" foreign-key="release_fk"/>
+            <index column="track_index"/>
+            <one-to-many class="io.musika.notifier.domain.model.shared.kernel.Track"/>
+        </list>
+
+    </class>
+</hibernate-mapping>

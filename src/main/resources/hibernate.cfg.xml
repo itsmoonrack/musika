@@ -10,7 +10,14 @@
         <!-- Properties defined here are shared between test and production -->
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
 
-        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Track.hbm.xml" />
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Artist.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Label.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Record.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Release.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/ReleaseEvent.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Store.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Subscription.hbm.xml"/>
+        <mapping resource="io/musika/notifier/infrastructure/persistence/hibernate/Track.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

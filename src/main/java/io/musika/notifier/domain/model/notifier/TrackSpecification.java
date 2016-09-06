@@ -55,4 +55,8 @@ public class TrackSpecification implements Specification<Catalog>, ValueObject<T
 				.hashCode();
 	}
 
+	protected TrackSpecification() {
+		// Needed by Hibernate
+	}
+
 }

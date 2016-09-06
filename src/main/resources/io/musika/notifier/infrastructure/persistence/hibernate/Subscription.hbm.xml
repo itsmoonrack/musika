@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="io.musika.notifier.domain.model.notifier.Subscription" table="Subscription">
+
+        <id name="id" column="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+        </id>
+
+        <component name="trackId" unique="true" update="false">
+            <property name="id" column="track_id"/>
+        </component>
+
+        <component name="notification" lazy="true">
+            <property name="available" column="is_available" not-null="true"/>
+            <property name="calculatedAt" column="calculated_at" not-null="true"/>
+
+            <property name="availability" column="availability" not-null="true">
+                <type name="org.hibernate.type.EnumType">
+                    <param name="enumClass">io.musika.notifier.domain.model.notifier.Availability</param>
+                    <param name="type">12</param><!-- 12 is java.sql.Types.VARCHAR -->
+                </type>
+            </property>
+
+            <property name="notificationStatus" column="notification_status" not-null="true">
+                <type name="org.hibernate.type.EnumType">
+                    <param name="enumClass">io.musika.notifier.domain.model.notifier.NotificationStatus</param>
+                    <param name="type">12</param><!-- 12 is java.sql.Types.VARCHAR -->
+                </type>
+            </property>
+
+            <many-to-one name="currentRelease" column="current_release_id" not-null="false" cascade="none" foreign-key="current_release_fk"/>
+            <many-to-one name="lastStore" column="last_store_id" not-null="false" cascade="none" foreign-key="last_store_fk"/>
+            <many-to-one name="lastEvent" column="last_event_id" not-null="false" cascade="none" foreign-key="last_event_fk"/>
+        </component>
+
+        <component name="trackSpecification">
+            <many-to-one name="track" column="spec_track_id" cascade="none" update="false" foreign-key="spec_track_fk"/>
+        </component>
+
+        <component name="catalog">
+            <list name="records" lazy="true" cascade="all-delete-orphan">
+                <key column="subscription_id" foreign-key="catalog_fk"/>
+                <index column="record_index"/>
+                <one-to-many class="io.musika.notifier.domain.model.notifier.Record"/>
+            </list>
+        </component>
+
+    </class>
+</hibernate-mapping>

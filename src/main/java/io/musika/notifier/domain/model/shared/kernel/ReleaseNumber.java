@@ -40,7 +40,7 @@ public final class ReleaseNumber implements ValueObject<ReleaseNumber>, Serializ
         return other != null && this.number.equals(other.number);
     }
 
-	ReleaseNumber() {
+	protected ReleaseNumber() {
 		// Needed by Hibernate
 	}
 

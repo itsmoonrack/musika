@@ -11,7 +11,7 @@ public class Artist implements ValueObject<Artist> {
 
 	public static final Artist EMPTY = new Artist("");
 
-	Artist(final String name) {
+	public Artist(final String name) {
 		this.name = name;
 	}
 
@@ -35,8 +35,11 @@ public class Artist implements ValueObject<Artist> {
 		return name.hashCode();
 	}
 
-	Artist() {
+	protected Artist() {
 		// Needed by Hibernate
 	}
+
+	// Auto-generated surrogate key
+	private Long id;
 
 }

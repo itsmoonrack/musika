@@ -1,9 +1,13 @@
 package io.musika.notifier.application;
 
+import io.musika.notifier.domain.model.notifier.Catalog;
+import io.musika.notifier.domain.model.notifier.Record;
 import io.musika.notifier.domain.model.shared.kernel.Artist;
+import io.musika.notifier.domain.model.shared.kernel.Track;
 import io.musika.notifier.domain.model.shared.kernel.TrackId;
 import io.musika.notifier.domain.model.shared.kernel.UserId;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,29 +20,34 @@ public interface TrackingService {
     /**
      * Registers a new track in the notification system, not yet subscribed.
      *
-     * @param name	track name
+     * @param artists   list of artists
+     * @param title     track's title
+     * @param remixers  list of remixers
+     * @param remixName name of the remix
      * @return Track id
      */
-    TrackId createNewTrack(Set<Artist> artist, String title, Set<Artist> remixer);
+    TrackId subscribeNewTrack(Set<Artist> artists, String title, Set<Artist> remixers, String remixName);
 
     /**
-     * Requests the number of subscribers for a track id.
+     * Requests a list of catalogs for a track id.
      *
      * @param trackId track id
-     * @return The number of subscribers for this track
+     * @return A list of possible catalogs for this subscription
      */
-    int requestSubscribersCountForRelease(TrackId trackId);
+    List<Catalog> requestPossibleRecordsForTrack(TrackId trackId);
 
 	/**
-     * @param userId
+     * @param catalog
      * @param trackId
      */
-    void subscribeUserToRelease(UserId userId, TrackId trackId);
+    void attachTrackToCatalog(Catalog catalog, TrackId trackId);
 
-    /**
-     * @param userId
-     * @param trackId
+	/**
+     * Changes the track of a subscription.
+     *
+     * @param trackId   subscription track id
+     * @param track     new track to watch <-- TODO this is bad
      */
-    void unsubscribeUserFromRelease(UserId userId, TrackId trackId);
+    void changeTrack(TrackId trackId, Track track);
 
 }

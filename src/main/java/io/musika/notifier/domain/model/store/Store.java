@@ -1,8 +1,10 @@
 package io.musika.notifier.domain.model.store;
 
-import io.musika.notifier.domain.model.shared.Entity;
+import static org.apache.commons.lang3.Validate.notNull;
 
 import java.net.URI;
+
+import io.musika.notifier.domain.model.shared.Entity;
 
 /**
  * A store is our model representing an entity who can sell releases of a track, either digitally or physically.
@@ -16,7 +18,21 @@ public final class Store implements Entity<Store, URI> {
 	private URI uriCode;
 	private String name;
 
+	/**
+	 * Special Store object that marks an unknown store.
+	 */
+	public static final Store UNKNOWN = new Store();
+
+	/**
+	 * Package-level constructor, visible for test only.
+	 *
+	 * @param uriCode	URI code
+	 * @param name		Store name
+	 */
 	Store(final URI uriCode, final String name) {
+		notNull(uriCode);
+		notNull(name);
+
 		this.uriCode = uriCode;
 		this.name = name;
 	}
@@ -59,4 +75,9 @@ public final class Store implements Entity<Store, URI> {
 	public int hashCode() {
 		return uriCode.hashCode();
 	}
+
+	protected Store() {
+		// Needed by Hibernate
+	}
+
 }

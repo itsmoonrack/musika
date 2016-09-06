@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field">
+    <class name="io.musika.notifier.domain.model.notifier.Record" table="Record" mutable="false">
+
+        <id name="id" column="id">
+            <generator class="org.hibernate.id.IdentityGenerator"/>
+        </id>
+
+        <many-to-one name="release" column="release_id" cascade="none" foreign-key="release_fk"/>
+
+        <many-to-one name="store" column="store_id" cascade="none" foreign-key="store_fk"/>
+
+    </class>
+</hibernate-mapping>

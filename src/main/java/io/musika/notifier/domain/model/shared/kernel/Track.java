@@ -9,7 +9,7 @@ import java.util.Set;
  * A track.
  */
 public class Track implements Entity<Track, TrackId> {
-// TODO: Make this a ValueObject since its immutable
+
 	private TrackId trackId;
 	private Set<Artist> artists;
 	private String title;
