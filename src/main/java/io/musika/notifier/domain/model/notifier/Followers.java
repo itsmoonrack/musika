@@ -1,6 +1,7 @@
 package io.musika.notifier.domain.model.notifier;
 
 import io.musika.notifier.domain.model.shared.ValueObject;
+import io.musika.notifier.domain.model.shared.kernel.User;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,17 +14,17 @@ import static org.apache.commons.lang3.Validate.notNull;
  *
  * @author Sylvain Lecoy <sylvain.lecoy@gmail.com>
  */
-public class Subscribers implements ValueObject<Subscribers> {
+public class Followers implements ValueObject<Followers> {
 
-	private List<User> subscribers = Collections.emptyList();
+	private List<User> followers = Collections.emptyList();
 
-	static final Subscribers EMPTY_SUBSCRIBERS = new Subscribers();
+	static final Followers EMPTY_FOLLOWERS = new Followers();
 
-	public Subscribers(final List<User> subscribers) {
-		notNull(subscribers);
-		noNullElements(subscribers);
+	public Followers(final List<User> followers) {
+		notNull(followers);
+		noNullElements(followers);
 
-		this.subscribers = subscribers;
+		this.followers = followers;
 	}
 
 	@Override
@@ -31,22 +32,22 @@ public class Subscribers implements ValueObject<Subscribers> {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 
-		final Subscribers other = (Subscribers) o;
+		final Followers other = (Followers) o;
 
 		return sameValueAs(other);
 	}
 
 	@Override
-	public boolean sameValueAs(Subscribers other) {
-		return other != null && subscribers.equals(other.subscribers);
+	public boolean sameValueAs(final Followers other) {
+		return other != null && followers.equals(other.followers);
 	}
 
 	@Override
 	public int hashCode() {
-		return subscribers.hashCode();
+		return followers.hashCode();
 	}
 
-	Subscribers() {
+	Followers() {
 		// Needed by hibernate
 	}
 

@@ -2,11 +2,10 @@ package io.musika.notifier.domain.model.release;
 
 import io.musika.notifier.domain.model.shared.ValueObject;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
+import static java.util.Collections.sort;
 import static org.apache.commons.lang3.Validate.notNull;
 
 /**
@@ -24,6 +23,13 @@ public class ReleaseHistory implements ValueObject<ReleaseHistory> {
         notNull(releaseEvents, "Release events are null");
 
         this.releaseEvents = new ArrayList<>(releaseEvents);
+    }
+
+    public List<ReleaseEvent> distinctEventsByCompletionTime() {
+        return releaseEvents.stream()
+                .sorted(BY_EVENT_TIME_COMPARATOR)
+                .distinct()
+                .collect(Collectors.toList());
     }
 
 	public ReleaseEvent mostRecentlyReleasedEvent() {
@@ -50,5 +56,8 @@ public class ReleaseHistory implements ValueObject<ReleaseHistory> {
     public int hashCode() {
         return releaseEvents.hashCode();
     }
+
+    private static final Comparator<ReleaseEvent> BY_EVENT_TIME_COMPARATOR =
+            (e1, e2) -> e1.eventTime().compareTo(e2.eventTime());
 
 }

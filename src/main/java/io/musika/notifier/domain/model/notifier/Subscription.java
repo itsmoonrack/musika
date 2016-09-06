@@ -40,6 +40,7 @@ public class Subscription implements Entity<Subscription, TrackId> {
 	private Catalog catalog;
     private Notification notification;
 	private TrackSpecification trackSpecification;
+    private int followers = 0;
 
 	public Subscription(final TrackId trackId, final TrackSpecification trackSpecification) {
 		notNull(trackId, "Track ID is null");
@@ -67,6 +68,13 @@ public class Subscription implements Entity<Subscription, TrackId> {
      */
     public Notification notification() {
         return notification;
+    }
+
+    /**
+     * @return The followers counts.
+     */
+    public int followers() {
+        return followers;
     }
 
     /**

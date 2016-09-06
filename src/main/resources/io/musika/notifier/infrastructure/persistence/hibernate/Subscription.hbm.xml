@@ -50,5 +50,9 @@
             </list>
         </component>
 
+        <property name="followers" column="followers_count" not-null="true">
+            <formula>select count(*) from UserSubscription where subscription_id = id</formula>
+        </property>
+
     </class>
 </hibernate-mapping>

@@ -21,6 +21,10 @@ public final class TrackId implements ValueObject<TrackId>, Serializable {
 		this.id = id;
 	}
 
+	public String idString() {
+	    return id;
+    }
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

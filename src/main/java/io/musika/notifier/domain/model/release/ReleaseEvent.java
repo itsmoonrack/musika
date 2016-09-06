@@ -35,6 +35,7 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
     private Release release;
     private Store store;
     private Date eventTime;
+    private Date releaseDate;
     private Subscription subscription;
 
     /**
@@ -42,6 +43,7 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
      */
     public enum Type implements ValueObject<Type> {
         RELEASED(true),
+        EXCLUSIVE(true),
         REMOVED(true),
         SUBSCRIBED(false);
 
@@ -99,22 +101,26 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
      * @param type              type of event
      * @param store  			where the event took place
      * @param release			the release
+     * @param releaseDate       the release date
      */
     public ReleaseEvent(final Subscription subscription,
                         final Date eventTime,
                         final Type type,
                         final Store store,
-                        final Release release) {
+                        final Release release,
+                        final Date releaseDate) {
         notNull(subscription, "Subscription is null");
         notNull(eventTime, "Event time is null");
         notNull(type, "Release event type is null");
         notNull(store, "Store is null");
         notNull(release, "Release is null");
+        notNull(releaseDate, "Release date is null");
 
         this.type = type;
         this.store = store;
         this.release = release;
         this.eventTime = eventTime;
+        this.releaseDate = releaseDate;
         this.subscription = subscription;
     }
 
@@ -124,6 +130,14 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
 
     public Release release() {
         return defaultIfNull(this.release, Release.NONE);
+    }
+
+    public Date eventTime() {
+        return this.eventTime;
+    }
+
+    public Date releaseDate() {
+        return this.releaseDate;
     }
 
     public Store store() {
