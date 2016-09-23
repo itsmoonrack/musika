@@ -9,10 +9,8 @@ import io.musika.notifier.domain.model.notifier.SubscriptionRepository;
 import io.musika.notifier.domain.model.shared.kernel.Artist;
 import io.musika.notifier.domain.model.shared.kernel.Track;
 import io.musika.notifier.domain.model.shared.kernel.TrackId;
-import io.musika.notifier.domain.model.shared.kernel.TrackRepository;
-import io.musika.notifier.domain.model.shared.kernel.UserId;
 import io.musika.notifier.domain.model.store.StoreRepository;
-import io.musika.notifier.domain.service.CatalogService;
+import io.musika.notifier.domain.services.CatalogService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

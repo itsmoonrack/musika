@@ -1,6 +1,6 @@
 package io.musika.notifier.domain.model.shared.kernel;
 
-import io.musika.notifier.domain.service.ArtistService;
+import io.musika.notifier.domain.services.ArtistService;
 
 /**
  * Creates tracks.

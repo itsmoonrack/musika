@@ -2,7 +2,7 @@ package io.musika.notifier.application;
 
 import io.musika.notifier.domain.model.notifier.Subscription;
 import io.musika.notifier.domain.model.release.ReleaseEvent;
-import io.musika.notifier.presentation.notification.ReleaseEventRegistrationAttempt;
+import io.musika.notifier.interfaces.notification.ReleaseEventRegistrationAttempt;
 
 /**
  * This interface provides a way to let other parts of the system know about events that have occurred.

@@ -45,6 +45,10 @@ public final class TrackId implements ValueObject<TrackId>, Serializable {
 		return other != null && this.id.equals(other.id);
 	}
 
+	@Override
+	public String toString() {
+		return id;
+	}
 
 	protected TrackId() {
 		// Needed by Hibernate

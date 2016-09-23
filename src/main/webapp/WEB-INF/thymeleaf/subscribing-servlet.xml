@@ -12,7 +12,7 @@
         </property>
     </bean>
 
-    <bean name="/subscription" class="io.musika.notifier.presentation.tracking.SubscriptionTrackingController">
+    <bean name="/subscription" class="io.musika.notifier.interfaces.tracking.SubscriptionTrackingController">
         <property name="subscriptionRepository" ref="subscriptionRepository"/>
         <property name="releaseEventRepository" ref="releaseEventRepository"/>
         <property name="messageSource" ref="messageSource"/>

@@ -5,4 +5,9 @@
 
     <import resource="context-infrastructure-persistence.xml"/>
 
+    <!-- Hibernate Search Web Service -->
+    <bean id="searchService" class="io.musika.notifier.infrastructure.search.hibernate.SearchServiceHibernate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
 </beans>

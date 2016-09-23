@@ -19,5 +19,24 @@
             classpath:context-interfaces.xml
         </param-value>
     </context-param>
+    
+    <listener>
+        <listener-class>io.musika.notifier.application.util.SampleDataGenerator</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>MusikaApi</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>io.musika.notifier.interfaces.search</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MusikaApi</servlet-name>
+        <url-pattern>/api/v1/*</url-pattern>
+    </servlet-mapping>
 
 </web-app>

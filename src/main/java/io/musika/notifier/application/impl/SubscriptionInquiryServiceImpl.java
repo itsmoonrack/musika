@@ -43,7 +43,7 @@ public class SubscriptionInquiryServiceImpl implements SubscriptionInquiryServic
 
         subscription.deriveNotificationStatus(releaseHistory);
 
-        if (subscription.notification().)
+//        if (subscription.notification().)
     }
 
 }

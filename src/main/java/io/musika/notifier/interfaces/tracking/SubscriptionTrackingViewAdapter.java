@@ -1,4 +1,4 @@
-package io.musika.notifier.presentation.tracking;
+package io.musika.notifier.interfaces.tracking;
 
 import io.musika.notifier.domain.model.notifier.Notification;
 import io.musika.notifier.domain.model.notifier.Subscription;

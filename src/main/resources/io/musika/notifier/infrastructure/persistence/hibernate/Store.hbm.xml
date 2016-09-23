@@ -11,6 +11,10 @@
             <generator class="org.hibernate.id.IdentityGenerator"/>
         </id>
 
+        <component name="uriCode" unique="true" update="false">
+            <property name="string" column="uricode" not-null="true"/>
+        </component>
+
         <property name="name" column="name" not-null="true"/>
 
     </class>

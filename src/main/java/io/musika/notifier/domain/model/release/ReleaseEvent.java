@@ -101,26 +101,22 @@ public final class ReleaseEvent implements DomainEvent<ReleaseEvent> {
      * @param type              type of event
      * @param store  			where the event took place
      * @param release			the release
-     * @param releaseDate       the release date
      */
     public ReleaseEvent(final Subscription subscription,
                         final Date eventTime,
                         final Type type,
                         final Store store,
-                        final Release release,
-                        final Date releaseDate) {
+                        final Release release) {
         notNull(subscription, "Subscription is null");
         notNull(eventTime, "Event time is null");
         notNull(type, "Release event type is null");
         notNull(store, "Store is null");
         notNull(release, "Release is null");
-        notNull(releaseDate, "Release date is null");
 
         this.type = type;
         this.store = store;
         this.release = release;
         this.eventTime = eventTime;
-        this.releaseDate = releaseDate;
         this.subscription = subscription;
     }
 

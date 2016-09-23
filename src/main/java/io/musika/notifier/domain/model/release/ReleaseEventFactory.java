@@ -42,9 +42,9 @@ public class ReleaseEventFactory {
 
         try {
             if (release == null) {
-                return new ReleaseEvent(track, eventTime, type, store);
+                return new ReleaseEvent(null, eventTime, type, store);
             } else {
-                return new ReleaseEvent(track, eventTime, type, store, release);
+                return new ReleaseEvent(null, eventTime, type, store, release);
             }
         } catch (Exception e) {
             throw new UnableToCreateReleaseEventException(e);

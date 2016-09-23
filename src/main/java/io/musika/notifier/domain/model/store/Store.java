@@ -80,4 +80,6 @@ public final class Store implements Entity<Store, URI> {
 		// Needed by Hibernate
 	}
 
+	private Long id;
+
 }

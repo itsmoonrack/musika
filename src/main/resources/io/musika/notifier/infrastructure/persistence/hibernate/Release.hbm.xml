@@ -13,7 +13,7 @@
 
         <property name="releaseDate" column="release_date" not-null="true"/>
 
-        <many-to-one name="recordLabel" column="label_id" not-null="true" cascade="none" foreign-key="label_fk"/>
+        <many-to-one name="recordRecordLabel" column="label_id" not-null="true" cascade="none" foreign-key="label_fk"/>
 
         <component name="releaseNumber" update="false">
             <property name="number" column="release_number" not-null="true"/>

@@ -1,4 +1,4 @@
-package io.musika.notifier.presentation.tracking;
+package io.musika.notifier.interfaces.tracking;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

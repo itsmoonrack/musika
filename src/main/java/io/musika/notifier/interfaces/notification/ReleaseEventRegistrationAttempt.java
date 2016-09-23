@@ -1,4 +1,4 @@
-package io.musika.notifier.presentation.notification;
+package io.musika.notifier.interfaces.notification;
 
 import io.musika.notifier.domain.model.release.ReleaseEvent;
 import io.musika.notifier.domain.model.shared.kernel.ReleaseNumber;

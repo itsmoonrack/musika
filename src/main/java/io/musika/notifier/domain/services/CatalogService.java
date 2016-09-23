@@ -1,4 +1,4 @@
-package io.musika.notifier.domain.service;
+package io.musika.notifier.domain.services;
 
 import java.util.List;
 

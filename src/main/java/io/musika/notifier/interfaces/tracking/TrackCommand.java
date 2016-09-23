@@ -1,4 +1,4 @@
-package io.musika.notifier.presentation.tracking;
+package io.musika.notifier.interfaces.tracking;
 
 public final class TrackCommand {
 
